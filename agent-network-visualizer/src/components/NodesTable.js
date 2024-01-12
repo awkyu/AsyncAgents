@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import {
     Accordion, AccordionSummary, AccordionDetails,
     Table, TableBody, TableCell, TableContainer,
-    TableHead, TableRow, Paper, Button, Typography,
+    TableHead, TableRow, Paper, Typography,
     TablePagination, Box, Avatar, Tooltip, IconButton
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FilterCenterFocusIcon from '@mui/icons-material/FilterCenterFocus';
-import EditIcon from '@mui/icons-material/Edit';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import StyledSwitch from './StyledNodeSwitch';

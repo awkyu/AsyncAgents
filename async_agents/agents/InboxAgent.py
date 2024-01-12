@@ -55,7 +55,7 @@ class InboxAgent:
     DESCRIPTION = ""
     NAME = ""
 
-    def __init__(self, name, description, llm=None, tools=[], agent_network=None, oai=True):
+    def __init__(self, name, description, llm=None, tools=[], agent_network=None, oai=True, response_counter=5, idle_counter=60):
         # Initialize input vars
         self.name = name
         if llm:
@@ -65,6 +65,8 @@ class InboxAgent:
         self.tools = tools
         self.description = description
         self.oai = oai
+        self.response_counter = response_counter
+        self.idle_counter = idle_counter
 
         # initialize additional vars
         self.system_prompt = self.DEFAULT_SYSTEM_PROMPT
@@ -267,10 +269,10 @@ class InboxAgent:
         return self.error_log
 
     async def run(self):
-        idle_counter = 50
+        idle_counter = self.idle_counter
         counter = 0
 
-        response_counter = 2
+        response_counter = self.response_counter
         response_count = 0
         while self.run_status:
             self.update_status("Idle")

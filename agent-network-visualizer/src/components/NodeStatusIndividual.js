@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { List, ListItem, ListItemText, Paper, Divider, Tooltip, IconButton } from '@mui/material';
 import NameTag from './NameTag';
 import StyledSwitch from './StyledNodeSwitch';
