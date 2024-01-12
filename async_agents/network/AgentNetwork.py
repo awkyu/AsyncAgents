@@ -1,5 +1,4 @@
 import math
-import copy
 
 
 class AgentNetwork:
@@ -44,12 +43,9 @@ class AgentNetwork:
 
     def add_agent(self, agent):
         self.agent_dictionary[agent.get_description_json()["name_uuid"]] = agent
+        agent.set_network_io(self.network_app, self.network_io, self.network_functions)
         if self.network_io and self.network_app:
-            # self.network_io.start_background_task(self.network_functions['graph_data'])
-
             with self.network_app.app_context():
-                # self.network_functions['graph_data']()
-                # self.network_io.emit('graph_data', self.get_graph_data())
                 self.network_io.emit('graph_data_updated', self.get_graph_data_updated())
 
     def edit_agent(self, agent_name_uuid, name, description, prompt):
@@ -57,6 +53,8 @@ class AgentNetwork:
         agent.update_name(name)
         agent.update_description(description)
         agent.update_system_prompt(prompt)
+        self.agent_dictionary.pop(agent_name_uuid)
+        self.agent_dictionary[agent.get_description_json()["name_uuid"]] = agent
         if self.network_io and self.network_app:
             with self.network_app.app_context():
                 self.network_io.emit('graph_data_updated', self.get_graph_data_updated())
@@ -132,8 +130,8 @@ class AgentNetwork:
             'links': [link for link in data['links'] if link not in self.last_graph_data['links'] and link['id'] not in [l['id'] for l in new_data['links']]]
         }
         deleted_data = {
-            'nodes': [node for node in self.last_graph_data['nodes'] if node not in data['nodes']],
-            'links': [link for link in self.last_graph_data['links'] if link not in data['links']]
+            'nodes': [node for node in self.last_graph_data['nodes'] if node['id'] not in [n['id'] for n in data['nodes']]],
+            'links': [link for link in self.last_graph_data['links'] if link['id'] not in [l['id'] for l in data['links']]]
         }
         output_data = {
             'new': new_data,
@@ -183,10 +181,7 @@ class AgentNetwork:
         agent1.recipients.pop(agent2_uuid)
         agent2.recipients.pop(agent1_uuid)
         if self.network_io and self.network_app:
-            # self.network_io.start_background_task(self.network_functions['graph_data'])
             with self.network_app.app_context():
-                # self.network_functions['graph_data']()
-                # self.network_io.emit('graph_data', self.get_graph_data())
                 self.network_io.emit('graph_data_updated', self.get_graph_data_updated())
 
     def disconnect_agents_by_name_uuid(self, agent1_uuid, agent2_uuid):

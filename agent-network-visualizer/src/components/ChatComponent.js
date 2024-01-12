@@ -2,7 +2,7 @@ import './ChatComponent.css';
 import '../App.css';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { TextField, Button, List, ListItem, ListItemText, Paper, Box } from '@mui/material';
+import { TextField, Button, Box } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 

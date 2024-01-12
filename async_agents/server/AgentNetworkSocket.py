@@ -1,6 +1,5 @@
-from flask import Flask, jsonify
+from flask import Flask
 from flask_socketio import SocketIO
-import math
 
 def create_agent_network_socket(agent_network):
 
@@ -66,6 +65,7 @@ def create_agent_network_socket(agent_network):
 
     @network_io.on('toggle_node_status_all')
     def toggle_node_status_all(data):
+        print('toggle_node_status_all', data)
         if data:
             for node in agent_network.get_agent_dictionary().values():
                 if not node.run_status:
@@ -127,6 +127,17 @@ def create_agent_network_socket(agent_network):
         'graph_data_updated': graph_data_updated,
         'node_chat': get_node_chat,
         'link_chat': get_link_chat,
+        'toggle_node_status': toggle_node_status,
+        'toggle_node_status_all': toggle_node_status_all,
+        'send_message': send_message,
+        'connect_nodes': connect_nodes,
+        'remove_link': remove_link,
+        'remove_node': remove_node,
+        'get_available_agents_instantiations': get_available_agents_instantiations,
+        'create_node': create_node,
+        'get_edit_node_params': get_node_params,
+        'edit_node': edit_node,
+        'copy_node': copy_node
     }
 
     return app, network_io, functions

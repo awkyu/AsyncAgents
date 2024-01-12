@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import SpeedDial from '@mui/material/SpeedDial';
-import SpeedDialIcon from '@mui/material/SpeedDialIcon';
-import SpeedDialAction from '@mui/material/SpeedDialAction';
+import { SpeedDial, SpeedDialIcon, SpeedDialAction } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import WebStoriesIcon from '@mui/icons-material/WebStories';
@@ -33,23 +31,12 @@ const CustomSpeedDial = styled(SpeedDial)(({ theme }) => ({
 const StyledSpeedDial = ({ isPanelOpen, togglePanel, handleToggleNodeStatusAll, openDialog, setOpenDialog, connectNodes, 
     setConnectNodes, connectNodePrevious, setOpenNodeCreationDialog }) => {
 
-    // const enterFullScreen = () => {
-    //     setFullScreen(true);
-    //     document.documentElement.requestFullscreen();
-    // }
-
-    // const exitFullScreen = () => {
-    //     setFullScreen(false);
-    //     document.exitFullscreen();
-    // }
-
     const handleConnectNodes = () => {
         setConnectNodes(!connectNodes);
         if (!connectNodes) {
             connectNodePrevious.current = null;
         }
     };
-
 
     const actions = [
         { icon: <WebStoriesIcon style={{color: isPanelOpen ? '#1976D2' : 'gray'}} />, name: 'Open Side Panel', onClick: togglePanel },
@@ -62,7 +49,7 @@ const StyledSpeedDial = ({ isPanelOpen, togglePanel, handleToggleNodeStatusAll, 
         // { icon: <FullscreenIcon />, name: (fullScreen ? 'Exit Full Screen' : 'Enter Full Screen') , onClick: (fullScreen ? exitFullScreen : enterFullScreen)},
         { icon: <StopCircleIcon />, name: 'Stop All Nodes', onClick: () => { handleToggleNodeStatusAll(false) } },
         { icon: <PlayCircleFilledWhiteIcon />, name: 'Start All Nodes', onClick: () => { handleToggleNodeStatusAll(true) }},
-        { icon: <GitHubIcon />, name: 'GitHub' },
+        { icon: <GitHubIcon />, name: 'GitHub', onClick: () => {window.open("https://github.com/awkyu/AsyncAgents/tree/main")} },
         { icon: <InfoIcon style={{color: openDialog ? '#1976D2' : 'gray'}} />, name: 'What is this?', onClick: () => { setOpenDialog(true) } },
     ];  
 

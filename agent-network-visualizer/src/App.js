@@ -5,19 +5,14 @@ import io from 'socket.io-client';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 
-import ForceGraph2DComponent from './components/ForceGraph2DComponent';
-// import ForceGraph3DComponent from './components/ForceGraph3DComponent';
-import ForceGraph3DComponent from './components/ForceGraph3DComponentv2';
-
-import ChatComponent from './components/ChatComponent';
-import ChatLogComponent from './components/ChatLogComponent';
+import ForceGraph3DComponent from './components/ForceGraph3DComponent';
 import TabbedChatComponent from './components/TabbedSidePanel';
-import PanelToggleButton from './components/PanelToggleButton';
 import NodesTable from './components/NodesTable';
 import StyledSpeedDial from './components/StyledSpeedDial';
 import InfoDialog from './components/InfoDialog';
 import ConnectNodesAlert from './components/ConnectNodesAlert';
 import NodeCreationDialog from './components/NodeCreationDialog';
+
 
 const darkTheme = createTheme({
     palette: {
@@ -27,7 +22,6 @@ const darkTheme = createTheme({
 
 
 const App = () => {
-    // const [fullScreen, setFullScreen] = useState(false);
     const [isPanelOpen, setIsPanelOpen] = useState(true);
     const [openDialog, setOpenDialog] = React.useState(false);
     const [openNodeCreationDialog, setOpenNodeCreationDialog] = React.useState(false);
@@ -434,7 +428,6 @@ const App = () => {
                         getEditNodeParams={getEditNodeParams}
                         handleCopyNode={handleCopyNode}
                     />
-                    <PanelToggleButton onClick={togglePanel} />
                     <StyledSpeedDial 
                         isPanelOpen={isPanelOpen} 
                         togglePanel={togglePanel} 

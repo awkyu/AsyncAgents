@@ -1,11 +1,10 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 
 import { 
-    Button, Dialog, ListItemText, ListItem, List, Divider, NativeSelect,
-    AppBar, Toolbar, IconButton, Typography, MenuItem, InputLabel,
-    Slide, Box, Stepper, Step, StepLabel, FormControl, Select, InputBase,
+    Button, Dialog, AppBar, Toolbar, IconButton, Typography, MenuItem, 
+    InputLabel, Slide, Box, Stepper, Step, StepLabel, FormControl, Select,
     TextField, Alert, Snackbar,
 } from '@mui/material';
 
@@ -92,8 +91,6 @@ function HorizontalLinearStepper({ activeStep }) {
         }}>
             {steps.map((label, index) => {
                 const stepProps = {};
-                const labelProps = {};
-
                 if (index === activeStep) {
                     stepProps.active = true;
                 }
@@ -115,29 +112,28 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function NodeCreationDialog({ open, setOpen, availableAgentBases, handleNodeCreation, agentBaseParams,
     editNode, setEditNode, editNodeParams, handleEditNode, 
 }) {
-    // const [open, setOpen] = React.useState(false);
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = useState(0);
 
-    const [agentBase, setAgentBase] = React.useState('');
-    const [agentParams, setAgentParams] = React.useState({});
-    const [name, setName] = React.useState('');
-    const [description, setDescription] = React.useState('');
-    const [prompt, setPrompt] = React.useState('');
+    const [agentBase, setAgentBase] = useState('');
+    const [agentParams, setAgentParams] = useState({});
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [prompt, setPrompt] = useState('');
 
-    const [snackbar0Open, setSnackbar0Open] = React.useState(false);
-    const [snackbar1Open, setSnackbar1Open] = React.useState(false);
+    const [snackbar0Open, setSnackbar0Open] = useState(false);
+    const [snackbar1Open, setSnackbar1Open] = useState(false);
 
 
-    React.useEffect (() => {
+    useEffect (() => {
         if (agentBase !== '' && !editNode) {
             setAgentParams(agentBaseParams[agentBase]);
             setName(agentBaseParams[agentBase].name)
             setPrompt(agentBaseParams[agentBase].system_prompt)
             setDescription(agentBaseParams[agentBase].description)
         }
-    }, [agentBase]);
+    }, [agentBase, editNode, agentBaseParams]);
 
-    React.useEffect (() => {
+    useEffect (() => {
         if (editNode) {
             setActiveStep(1);
             setAgentBase(editNodeParams.base);
@@ -149,10 +145,6 @@ function NodeCreationDialog({ open, setOpen, availableAgentBases, handleNodeCrea
 
     const handleNextButton = () => { 
         console.log(activeStep)
-        // if (activeStep === steps.length - 1) {
-        //     setActiveStep(activeStep);
-        //     return
-        // }
         if (activeStep === 0 && agentBase === '') {
             setSnackbar0Open(true);
             setActiveStep(activeStep);
@@ -173,6 +165,7 @@ function NodeCreationDialog({ open, setOpen, availableAgentBases, handleNodeCrea
             }
 
             setOpen(false);
+            setEditNode(false);
             setActiveStep(0);
             setAgentBase('');
             setAgentParams({});
@@ -191,10 +184,6 @@ function NodeCreationDialog({ open, setOpen, availableAgentBases, handleNodeCrea
             if (activeStep === 1 && editNode) return activeStep;
             return activeStep - 1
         });
-    };
-
-    const handleClickOpen = () => {
-        setOpen(true);
     };
 
     const handleClose = () => {

@@ -1,4 +1,4 @@
-# Agent Network Visualizer (for AsyncAgents)
+# AsyncAgents - Flask Server
 
 This is the frontend visualizer for Async Agents created using [React](https://react.dev/), [Material UI](https://mui.com/), and [react-force-graph](https://github.com/vasturiano/react-force-graph). This visualizer comprises of a 3D interactive experience and viewer of interactions between asynchronous agents and users based on [graph theory](https://en.wikipedia.org/wiki/Graph_theory). Nodes represent individual agents and edges represent available communication pathways.
 
