@@ -2,7 +2,7 @@
 
 This is a basic framework for running agents in an asynchronous manner. It was inspired by a mix of modern-day social media graphs for communication and an email system where people get messages in their "inbox," hence the "InboxAgent" being the default AI agent here. This framework works with a frontend webapp counterpart [agent-network-visualizer](https://github.com/awkyu/AsyncAgents/tree/main/agent-network-visualizer), but can also work as a standalone framework. The example [notebook](https://github.com/awkyu/AsyncAgents/blob/main/async_agents/examples/ExampleServerNotebook.ipynb) should give you an idea for both the standalone operations as well as setting up a flask server for the frontend visualization.
 
-[Insert Image/GIF here]
+![Alt Text](https://github.com/awkyu/AsyncAgents/blob/main/media/demo.gif)
 
 # Why asynchronous?
 

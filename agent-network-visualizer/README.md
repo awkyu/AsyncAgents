@@ -2,8 +2,7 @@
 
 This is the frontend visualizer for Async Agents created using [React](https://react.dev/), [Material UI](https://mui.com/), and [react-force-graph](https://github.com/vasturiano/react-force-graph). This visualizer comprises of a 3D interactive experience and viewer of interactions between asynchronous agents and users based on [graph theory](https://en.wikipedia.org/wiki/Graph_theory). Nodes represent individual agents and edges represent available communication pathways.
 
-[Insert Image/GIF here]
-
+![Alt Text](https://github.com/awkyu/AsyncAgents/blob/main/media/demo.gif)
 
 # Requirements and Installation
 These are the versions of software I used when developing this, but does not mean that it won't work on other versions.
